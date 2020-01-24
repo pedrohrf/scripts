@@ -11,8 +11,8 @@ DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
 
 AWS_REGION = os.environ.get('AWS_REGION') or 'us-east-1'
 DYNAMO_DB_ENDPOINT_URL = os.environ['DYNAMO_DB_ENDPOINT_URL']
-DYNAMO_DB_USER = os.environ['DYNAMO_DB_ENDPOINT_URL']
-DYNAMO_DB_PASSWD = os.environ['DYNAMO_DB_ENDPOINT_URL']
+DYNAMO_DB_USER = os.environ['DYNAMO_DB_USER']
+DYNAMO_DB_PASSWD = os.environ['DYNAMO_DB_PASSWD']
 
 
 def get_data(from_table, key, value):
@@ -59,9 +59,9 @@ class DynamoDB:
     def get_config(self, is_local):
         config = {'region_name': AWS_REGION}
         if is_local:
-            config['endpoint_url'] = 'http://0.0.0.0:8000'
-            config['aws_access_key_id'] = 'key_id'
-            config['aws_secret_access_key'] = 'secret_key'
+            config['endpoint_url'] = DYNAMO_DB_ENDPOINT_URLDYNAMO_DB_ENDPOINT_URL
+            config['aws_access_key_id'] = DYNAMO_DB_USER
+            config['aws_secret_access_key'] = DYNAMO_DB_PASSWD
         return config
 
     def create_table(self):
